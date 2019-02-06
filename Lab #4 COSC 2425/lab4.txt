@@ -1,0 +1,171 @@
+//Lab 4 - Erik Bautista Part 1
+
+
+//Part 1
+package rentalcar;
+
+public class RentalCar 
+{
+	
+	private String vin;
+	private CarMake make;
+	private int year;
+	
+	public static final String DEFAULT_VIN = "0000";
+	public static final int DEFAULT_YEAR = 2019;
+	
+	public RentalCar()
+	{
+		this.vin = DEFAULT_VIN;
+		this.year = DEFAULT_YEAR;
+		this.make = CarMake.TOYOTA;
+	}
+	
+	
+	public RentalCar(String aVin, int aYear, CarMake aMake)
+	{
+		//Calls setYear to check for year and set it.
+		setYear(aYear);
+		
+		
+		//Calls setVin to check for vin and set it.
+		setVin(aVin);
+		
+		
+		//Calls setMake to set car make.
+		setMake(aMake);
+	}
+	
+	//This returns the values in one line
+	public String toString()
+	{
+		String retVal = String.format("Vehicle Brand: " + this.make + " Year: " + this.year + " Vin: " + this.vin);
+		return retVal;
+	}
+	
+	
+	//This returns the vin of this car
+	public String getVin()
+	{
+		String retVal = String.format(this.vin);
+		return retVal;
+	}
+	
+	// returns the make of this car
+	public CarMake getMake()
+	{	
+		return this.make;
+	}
+	
+	public int getYear()
+	{
+		return this.year;
+	}
+	
+	public void setVin(String aVin)
+	{
+		// Checks for vin//
+		if (aVin.length() != 4)
+		{
+			this.vin = DEFAULT_VIN;
+		}
+		
+		else 
+		{
+			boolean valid = true; // check whether the length has a valid characte or not
+			for (int i = 0; i < aVin.length(); i++)
+			{
+				char ch = aVin.charAt(i);
+				
+				if (Character.isLetterOrDigit(ch) == false)
+				{
+					
+					valid = false;
+					
+				}
+				
+			}
+			
+			if (valid != true) //if its not true, it will assing default vin
+			{
+				this.vin = DEFAULT_VIN;
+			}
+			
+			else
+			{
+				this.vin = aVin.toUpperCase();
+			}
+			
+		}
+	}
+
+	public void setMake(CarMake aMake)
+	{
+		this.make = aMake;	
+	}
+	
+	
+	public void setYear(int aYear)
+	{
+		//Checks for year //
+		if (aYear < 2013 || aYear > 2019) //checks for year if its in valid range
+		{
+			this.year = DEFAULT_YEAR;
+		}
+				
+		else
+		{
+			this.year = aYear;
+		}
+	}
+}
+
+/* Output
+Enter your name: Erik
+Testing of Lab4Test for: Erik
+Execution BEGINS  at: 2019-02-06 15:02:16
+****Testing Constructors and Accessors****
+car1: Vehicle Brand: TOYOTA Year: 2019 Vin: 0000
+SUCCESS expected 2019
+SUCCESS expected 0000
+SUCCESS expected TOYOTA
+car1: Vehicle Brand: CHRYSLER Year: 2019 Vin: 0000
+SUCCESS expected 2019
+SUCCESS expected 0000
+SUCCESS expected CHRYSLER
+car1: Vehicle Brand: HONDA Year: 2019 Vin: 0000
+SUCCESS expected 2019
+SUCCESS expected 0000
+car1: Vehicle Brand: FORD Year: 2013 Vin: 0000
+SUCCESS expected 2013
+SUCCESS expected 0000
+SUCCESS expected FORD
+**** Testing setters ****
+SUCCESS expected 2019
+SUCCESS expected 2014
+SUCCESS expected 2019
+SUCCESS expected 2019
+SUCCESS expected 2019
+SUCCESS expected 0000
+SUCCESS expected 0000
+SUCCESS expected 0000
+SUCCESS expected 0000
+SUCCESS expected 0000
+SUCCESS expected 0000
+SUCCESS expected 0000
+SUCCESS expected CCZZ
+SUCCESS expected A22B
+SUCCESS expected 4477
+SUCCESS expected FORD
+SUCCESS expected HONDA
+SUCCESS expected CHEVY
+**** Testing toString() ****
+SUCCESS RentalCar method toString() has proper attribute values in it
+Should Receive string such as:  VIN: 4477 Year: 2019 Make: CHEVY
+Actually Received Back string: Vehicle Brand: CHEVY Year: 2019 Vin: 4477
+SUCCESS expected 0 newlines in String returned from toString().
+SUCCESS String returned from toString() has correct attribute values.
+****Testing Complete****
+Execution ENDS  at: 2019-02-06 15:02:16
+End of Testing of Lab4Test for: Erik
+*/
