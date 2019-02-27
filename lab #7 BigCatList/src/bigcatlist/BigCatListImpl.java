@@ -54,35 +54,35 @@ public class BigCatListImpl implements BigCatList {
 	public boolean add(BigCat bigCat) {
 		// TODO Auto-generated method stub
 		
-		boolean existsInArray = true;
+		boolean existsInArray = false;
 		boolean retval = false;
 		
 		if (arrayBigClass.size() < BigCatList.MAX_SIZE)
 		{
 			for (int i = 0; i < arrayBigClass.size(); i++)
 			{
-				if(!(arrayBigClass.get(i).equals(bigCat)))
-				{
-					existsInArray = false;
-				}			
-				else	
+				if((arrayBigClass.get(i).equals(bigCat)))
 				{
 					existsInArray = true;
 					break;
-				}		
+				}					
+			}
+			if (existsInArray = false)
+			{
+				arrayBigClass.add(bigCat);
 			}
 			
 		}
 
 		
-		if (existsInArray == false)
+		if (existsInArray == true)
 		{
-			retval = true;
+			retval = false;
 		}
 		
 		else
 		{
-			retval = false;
+			retval = true;
 		}
 		
 		return retval;
